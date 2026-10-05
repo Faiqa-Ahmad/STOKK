@@ -32,7 +32,7 @@ const StakingCalculator = () => {
     }
   };
 
-  return <Paper elevation={0} sx={{ border: "1px solid #d9e4e6", borderRadius: 3, overflow: "hidden" }}>
+  return <Paper className="motion-fade-scale" elevation={0} sx={{ border: "1px solid #d9e4e6", borderRadius: 3, overflow: "hidden", boxShadow: "0 24px 65px rgba(18,48,55,.08)", transition: "box-shadow .35s ease, transform .35s ease", "&:hover": { boxShadow: "0 30px 80px rgba(18,48,55,.12)", transform: "translateY(-2px)" } }}>
     <Box sx={{ p: { xs: 2.5, md: 4 }, background: "linear-gradient(135deg, #173039 0%, #205b66 100%)", color: "white" }}>
       <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}><Box sx={{ bgcolor: "rgba(0,219,227,.16)", p: 1, borderRadius: 2, display: "flex" }}><TrendingUpRoundedIcon sx={{ color: "#00dbe3" }}/></Box><Box><Typography variant="h5" fontWeight={800}>Staking rewards calculator</Typography><Typography sx={{ color: "rgba(255,255,255,.72)", mt: .25 }}>Model compounded token growth before you stake.</Typography></Box></Box>
     </Box>
@@ -43,7 +43,7 @@ const StakingCalculator = () => {
         <Box sx={{ display: "grid", gridTemplateColumns: "1fr 120px", gap: 1 }}><TextField label="Duration" type="number" value={duration} onChange={(e) => setDuration(e.target.value)} inputProps={{ min: 0, step: "any" }} required/><FormControl><InputLabel id="duration-unit">Unit</InputLabel><Select labelId="duration-unit" label="Unit" value={durationUnit} onChange={(e) => setDurationUnit(e.target.value as "years" | "days")}><MenuItem value="years">Years</MenuItem><MenuItem value="days">Days</MenuItem></Select></FormControl></Box>
         <FormControl><InputLabel id="frequency">Compounding</InputLabel><Select labelId="frequency" label="Compounding" value={frequency} onChange={(e) => setFrequency(e.target.value as Frequency)}>{(["daily", "weekly", "monthly", "annually"] as Frequency[]).map((item) => <MenuItem key={item} value={item}>{item[0].toUpperCase() + item.slice(1)}</MenuItem>)}</Select></FormControl>
         <TextField label="Token price (USD, optional)" type="number" value={tokenPrice} onChange={(e) => setTokenPrice(e.target.value)} inputProps={{ min: 0, step: "any" }}/>
-        <Button type="submit" variant="contained" size="large" disabled={status === "loading"} sx={{ bgcolor: "#00b4c9", fontWeight: 800, minHeight: 48, "&:hover": { bgcolor: "#0099ab" } }}>{status === "loading" ? <><CircularProgress size={20} color="inherit" sx={{ mr: 1 }}/>Calculating…</> : "Calculate rewards"}</Button>
+        <Button type="submit" variant="contained" size="large" disabled={status === "loading"} sx={{ bgcolor: "#00b4c9", fontWeight: 800, minHeight: 48, transition: "transform .2s ease, box-shadow .2s ease, background-color .2s ease", boxShadow: "0 10px 24px rgba(0,180,201,.2)", "&:hover": { bgcolor: "#0099ab", transform: "translateY(-2px)", boxShadow: "0 14px 30px rgba(0,180,201,.28)" }, "&:active": { transform: "translateY(0) scale(.99)" } }}>{status === "loading" ? <><CircularProgress size={20} color="inherit" sx={{ mr: 1 }}/>Calculating…</> : "Calculate rewards"}</Button>
         {status === "error" && <Alert severity="error" sx={{ gridColumn: "1 / -1" }}>{error}</Alert>}
       </Box>
       <Box sx={{ bgcolor: "#f6f9f9", borderRadius: 2.5, p: { xs: 2, sm: 3 }, minHeight: 320, display: "flex", flexDirection: "column", justifyContent: result ? "flex-start" : "center" }} aria-live="polite">
