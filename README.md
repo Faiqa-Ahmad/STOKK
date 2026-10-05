@@ -17,6 +17,7 @@ The dashboard is at `http://localhost:3000/dashboard`. Express listens on port `
 
 ```bash
 npm test -- --watchAll=false
+npm run lint
 npm run build
 ```
 

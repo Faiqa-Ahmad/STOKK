@@ -68,7 +68,7 @@ const BlogCard = ({ item }: any) => {
 
   useEffect(() => {
     startCountdown(item.distance);
-  }, []);
+  }, [item.distance]);
 
   return (
     <Card

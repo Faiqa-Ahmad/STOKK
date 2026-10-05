@@ -1,12 +1,7 @@
 import React, { FC, useState } from "react";
 import Box from "@mui/material/Box";
-import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
-import IconButton, { iconButtonClasses } from "@mui/material/IconButton";
-import ArrowForward from "@mui/icons-material/ArrowForward";
 import BitcoinBuyModal from "../modal/BitcoinBuyModal";
-import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
-import CreditCardIcon from "@mui/icons-material/CreditCard";
 import "../../assets/css/fontawesome-all.min.css";
 
 interface Props {

@@ -1,4 +1,4 @@
-test("test environment is configured", () => {
+test("environment is configured", () => {
   expect(true).toBe(true);
 });
 

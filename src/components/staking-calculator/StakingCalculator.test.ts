@@ -15,6 +15,22 @@ describe("calculateRewards", () => {
     const result = calculateRewards({ principal: 100, apy: 0, durationYears: 1, compoundingFrequency: "annually", tokenPrice: 2.5 });
     expect(result.finalValueUsd).toBe(250);
   });
+
+  test.each([
+    ["daily", 365],
+    ["weekly", 52],
+    ["monthly", 12],
+    ["annually", 1],
+  ])("supports %s compounding", (frequency, periodsPerYear) => {
+    const result = calculateRewards({
+      principal: 1000,
+      apy: 10,
+      durationYears: 0.5,
+      compoundingFrequency: frequency,
+    });
+    const expected = 1000 * Math.pow(1 + 0.1 / periodsPerYear, periodsPerYear * 0.5);
+    expect(result.finalBalance).toBeCloseTo(expected, 6);
+  });
 });
 
 export {};

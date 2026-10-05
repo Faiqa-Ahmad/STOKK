@@ -14,7 +14,9 @@ const StakingCalculator = () => {
   const [result, setResult] = useState<RewardsResult | null>(null);
 
   const submit = async (event: FormEvent) => {
-    event.preventDefault(); setError("");
+    event.preventDefault();
+    setError("");
+    setResult(null);
     const parsed = { principal: Number(principal), apy: Number(apy), durationYears: durationUnit === "days" ? Number(duration) / 365 : Number(duration), compoundingFrequency: frequency, ...(tokenPrice.trim() ? { tokenPrice: Number(tokenPrice) } : {}) };
     if (!principal || apy === "" || !duration || parsed.principal <= 0 || parsed.apy < 0 || parsed.durationYears <= 0) {
       setStatus("error"); setError("Enter a positive stake and duration, and an APY of zero or more."); return;
@@ -47,7 +49,7 @@ const StakingCalculator = () => {
       <Box sx={{ bgcolor: "#f6f9f9", borderRadius: 2.5, p: { xs: 2, sm: 3 }, minHeight: 320, display: "flex", flexDirection: "column", justifyContent: result ? "flex-start" : "center" }} aria-live="polite">
         {!result && status !== "loading" && <Box sx={{ textAlign: "center", color: "text.secondary" }}><TrendingUpRoundedIcon sx={{ fontSize: 48, color: "#9cb4b8" }}/><Typography variant="h6" color="text.primary" fontWeight={700}>Your projection will appear here</Typography><Typography>Adjust the inputs and calculate to see growth over time.</Typography></Box>}
         {status === "loading" && <Box sx={{ textAlign: "center" }}><CircularProgress sx={{ color: "#00b4c9" }}/><Typography sx={{ mt: 2 }} color="text.secondary">Building your projection…</Typography></Box>}
-        {result && status !== "loading" && <><Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "repeat(3, 1fr)" }, gap: 1.5, mb: 3 }}>{[{ label: "Final balance", value: `${formatNumber(result.finalBalance)} tokens` }, { label: "Rewards earned", value: `+${formatNumber(result.totalRewards)} tokens` }, { label: "Final USD value", value: result.finalValueUsd == null ? "Add token price" : `$${formatNumber(result.finalValueUsd)}` }].map((item) => <Box key={item.label} sx={{ bgcolor: "white", border: "1px solid #e2ebec", borderRadius: 2, p: 1.5 }}><Typography variant="caption" color="text.secondary">{item.label}</Typography><Typography fontWeight={800} sx={{ mt: .4 }}>{item.value}</Typography></Box>)}</Box><GrowthChart data={result.timeSeries}/></>}
+        {result && status === "success" && <><Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "repeat(3, 1fr)" }, gap: 1.5, mb: 3 }}>{[{ label: "Final balance", value: `${formatNumber(result.finalBalance)} tokens` }, { label: "Rewards earned", value: `+${formatNumber(result.totalRewards)} tokens` }, { label: "Final USD value", value: result.finalValueUsd == null ? "Add token price" : `$${formatNumber(result.finalValueUsd)}` }].map((item) => <Box key={item.label} sx={{ bgcolor: "white", border: "1px solid #e2ebec", borderRadius: 2, p: 1.5 }}><Typography variant="caption" color="text.secondary">{item.label}</Typography><Typography fontWeight={800} sx={{ mt: .4 }}>{item.value}</Typography></Box>)}</Box><GrowthChart data={result.timeSeries}/></>}
       </Box>
     </Box>
   </Paper>;

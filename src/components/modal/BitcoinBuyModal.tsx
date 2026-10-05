@@ -1,7 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import { Typography, Grid, Button, useTheme } from "@mui/material";
+import { Grid, Button, useTheme } from "@mui/material";
 import SubTitle from "../text/SubTitle";
 import { Link } from "react-router-dom";
 
