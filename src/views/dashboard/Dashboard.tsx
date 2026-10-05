@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -20,6 +20,7 @@ import Text2 from "../../components/text/Text2";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import { useNavigate } from "react-router-dom";
+import StakingCalculator from "../../components/staking-calculator/StakingCalculator";
 
 const Dashboard = () => {
   const [isPublished, setIsPublished] = useState(false);
@@ -51,7 +52,7 @@ const Dashboard = () => {
       <Box sx={{ background: "linear-gradient(to bottom, #173039, #00b4c9)" }}>
         <Box
           sx={{
-            padding: "50px 80px",
+            padding: { xs: "36px 20px", sm: "50px 80px" },
             [theme.breakpoints.up("sm")]: { maxWidth: "1400px" },
             width: "calc(100vw - 6px)",
             margin: "auto",
@@ -85,8 +86,8 @@ const Dashboard = () => {
             />
             <Typography
               sx={{
-                fontSize: "18px",
-                lineHeight: "60px",
+                fontSize: { xs: "15px", sm: "18px" },
+                lineHeight: { xs: "24px", sm: "60px" },
                 color: "#fff",
                 fontWeight: 400,
               }}
@@ -96,22 +97,25 @@ const Dashboard = () => {
           </Box>
         </Box>
       </Box>
+      <Box sx={{ backgroundColor: "#fff", px: { xs: 2, md: 3 }, pt: { xs: 5, md: 8 } }}><Box sx={{ maxWidth: "1400px", mx: "auto" }}><StakingCalculator /></Box></Box>
       <Box
         sx={{
           minHeight: "calc(100vh - 450px)",
           backgroundColor: "#fff",
-          padding: "80px 24px",
+          padding: { xs: "40px 16px 80px", md: "64px 24px 80px" },
           display: "flex",
+          flexDirection: { xs: "column", md: "row" },
           gap: "20px",
         }}
       >
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+        <Box sx={{ display: "flex", flexDirection: { xs: "row", md: "column" }, flexWrap: "wrap", gap: "12px" }}>
           <Button
             variant="contained"
             sx={{
               backgroundColor: "#00dbe3",
               borderRadius: "6px",
-              width: "352px",
+              width: { xs: "auto", md: "352px" },
+              flex: { xs: 1, md: "initial" },
               height: "64px",
               fontSize: "24px",
               lineHeight: "60px",
@@ -127,7 +131,8 @@ const Dashboard = () => {
             sx={{
               backgroundColor: "#23a2bb",
               borderRadius: "6px",
-              width: "352px",
+              width: { xs: "auto", md: "352px" },
+              flex: { xs: 1, md: "initial" },
               height: "64px",
               fontSize: "24px",
               lineHeight: "60px",
@@ -143,7 +148,8 @@ const Dashboard = () => {
             sx={{
               backgroundColor: "#173039",
               borderRadius: "6px",
-              width: "352px",
+              width: { xs: "100%", sm: "auto", md: "352px" },
+              flex: { xs: "1 0 100%", sm: 1, md: "initial" },
               height: "64px",
               fontSize: "24px",
               lineHeight: "60px",
@@ -172,7 +178,7 @@ const Dashboard = () => {
                     padding: "0px 5px",
                     borderRight: "2px solid #00dbe3",
                   },
-                  "& th:first-child": {
+                  "& th:first-of-type": {
                     borderTopLeftRadius: "8px",
                   },
                   "& th:last-child": {

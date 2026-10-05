@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Box, Typography, Button, Stack } from "@mui/material";
-import api from "../../utils/api";
 import CustomTextField from "../../components/text/TextField";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { setlogin } from "../../store/auth";
@@ -50,7 +49,7 @@ const LoginField = () => {
     if (!statusAuth && errorAuth !== "") {
       dispatch(showAlert({ message: errorAuth, severity: "error" }));
     }
-  }, [loggedinUser, updateResponse]);
+  }, [dispatch, errorAuth, loggedinUser, navigate, statusAuth, updateResponse]);
 
   return (
     <>

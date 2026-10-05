@@ -19,7 +19,7 @@ export const setlogin = createAsyncThunk(
 
 export const setlogout = createAsyncThunk("auth/logout", async () => {
   try {
-    const res = await api.authPost("/logout");
+    await api.authPost("/logout");
     return true;
   } catch (error) {
     console.error("Error Authentication.");

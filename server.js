@@ -15,14 +15,20 @@ app.use('/api/users', require('./server/routes/api/users'));
 app.use('/api/auth', require('./server/routes/api/auth'));
 app.use('/api/profile', require('./server/routes/api/profile'));
 app.use('/api/posts', require('./server/routes/api/posts'));
+app.use('/api/calculate-rewards', require('./server/routes/api/rewards'));
+
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).json({ error: 'An unexpected error occurred. Please try again.' });
+});
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
   // Set static folder
-  app.use(express.static('client/build'));
+  app.use(express.static('build'));
 
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
   });
 }
 

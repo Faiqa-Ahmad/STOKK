@@ -3,7 +3,9 @@ import { styled } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 
 const StyledLogo = styled("img")({
-  height: "120px"
+  height: "120px",
+  maxWidth: "100%",
+  objectFit: "contain"
 });
 
 export const Logo = () => {
@@ -13,7 +15,7 @@ export const Logo = () => {
       src="/images/lock-logo.png"
       alt="logo"
       onClick={() => navigate("/")}
-      sx={{ cursor: "pointer" }}
+      sx={{ cursor: "pointer", height: { xs: "82px", sm: "120px" } }}
     />
   );
 };

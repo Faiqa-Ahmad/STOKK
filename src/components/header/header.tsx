@@ -4,26 +4,13 @@ import Container from "@mui/material/Container";
 import IconButton from "@mui/material/IconButton";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { Navigation } from "../navigation";
-import { useTheme, useThemeProps } from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
 import { Menu, Close } from "@mui/icons-material";
 import { Logo } from "../logo/logo";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { selectLoginUser } from "../../store/auth/selectors";
-import { useNavigate } from "react-router-dom";
-import { styled } from "@mui/material/styles";
-
-const StyledLogoLeaked = styled("img")({
-  marginLeft: "20px",
-  width: "200px"
-});
 
 const Header: FC = () => {
   const [visibleMenu, setVisibleMenu] = useState<boolean>(false);
   const { breakpoints } = useTheme();
-  const dispatch = useAppDispatch();
-  const username = useAppSelector(selectLoginUser);
-  const navigate = useNavigate();
-
   const matchMobileView = useMediaQuery(breakpoints.down("lg"));
   return (
     <Box sx={{ backgroundColor: "#173039" }}>

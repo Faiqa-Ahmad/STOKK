@@ -4,6 +4,15 @@
   --color-scrollbar-hover: #bbb;
 }
 
+html {
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;

@@ -16,13 +16,18 @@ const Footer: FC = () => {
             textAlign: "left",
             display: "flex",
             justifyContent: "space-between",
-            alignItems: "center"
+            alignItems: "center",
+            flexDirection: { xs: "column", sm: "row" },
+            gap: 2,
+            py: { xs: 3, sm: 0 },
+            "& img": { maxWidth: "100%", height: "auto" }
           }}
         >
           <FooterLogo />
           <Box
             sx={{
-              width: "324px",
+              width: { xs: "100%", sm: "324px" },
+              flexShrink: 0,
               height: "45px",
               borderRadius: "6px",
               backgroundColor: "#fff",
