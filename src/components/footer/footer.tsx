@@ -8,7 +8,7 @@ const Footer: FC = () => {
   return (
     <Box
       component="footer"
-      sx={{ background: "linear-gradient(to bottom, #173039, #00b4c9)" }}
+      sx={{ background: "#10292f", borderTop: "1px solid rgba(255,255,255,.08)" }}
     >
       <Container sx={{ [breakpoints.up("sm")]: { maxWidth: "1400px" } }}>
         <Box
@@ -19,8 +19,8 @@ const Footer: FC = () => {
             alignItems: "center",
             flexDirection: { xs: "column", sm: "row" },
             gap: 2,
-            py: { xs: 3, sm: 0 },
-            "& img": { maxWidth: "100%", height: "auto" }
+            py: { xs: 3, sm: 2 },
+            "& img": { maxWidth: "240px", maxHeight: "72px", height: "auto", objectFit: "contain" }
           }}
         >
           <FooterLogo />
@@ -28,11 +28,12 @@ const Footer: FC = () => {
             sx={{
               width: { xs: "100%", sm: "324px" },
               flexShrink: 0,
-              height: "45px",
-              borderRadius: "6px",
-              backgroundColor: "#fff",
-              color: "#00c1c9",
-              fontSize: "30px",
+              height: "42px",
+              borderRadius: "10px",
+              backgroundColor: "rgba(255,255,255,.06)",
+              border: "1px solid rgba(255,255,255,.1)",
+              color: "#55edf1",
+              fontSize: "14px",
               lineHeight: "6px",
               fontWeight: "bold",
               display: "flex",

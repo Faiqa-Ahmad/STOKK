@@ -13,26 +13,27 @@ const Header: FC = () => {
   const { breakpoints } = useTheme();
   const matchMobileView = useMediaQuery(breakpoints.down("lg"));
   return (
-    <Box sx={{ backgroundColor: "#173039" }}>
+    <Box sx={{ backgroundColor: "rgba(16,41,47,.97)", borderBottom: "1px solid rgba(255,255,255,.08)", position: "sticky", top: 0, zIndex: 1200, backdropFilter: "blur(16px)" }}>
       <Container
         sx={{
           [breakpoints.up("sm")]: {
             maxWidth: "1400px"
           },
-          pt: "30px",
-          pb: "8px"
+          py: { xs: 1.2, md: 1.5 },
+          px: { xs: 2, md: 4 }
         }}
       >
         <Box
           sx={{
             display: "flex",
             alignItems: "center",
-            justifyContent: "space-between"
+            justifyContent: "space-between",
+            minHeight: 66
           }}
         >
           <Logo />
           <Box sx={{ ml: "auto", display: { md: "inline-flex", lg: "none" } }}>
-            <IconButton onClick={() => setVisibleMenu(!visibleMenu)}>
+            <IconButton onClick={() => setVisibleMenu(!visibleMenu)} sx={{ color: "white", bgcolor: "rgba(255,255,255,.06)" }}>
               <Menu />
             </IconButton>
           </Box>
@@ -46,7 +47,7 @@ const Header: FC = () => {
               transition: theme => theme.transitions.create(["top"]),
               ...matchMobileView && {
                 py: 6,
-                backgroundColor: "background.paper",
+                backgroundColor: "#10292f",
                 zIndex: "appBar",
                 position: "fixed",
                 height: { xs: "100vh", lg: "auto" },
